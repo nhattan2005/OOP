@@ -1,45 +1,61 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct phanso{
-    int tu, mau;
-    void print()
-    {
-        if(mau == 1) cout << tu;
-        else if(tu == 0) cout << 0;
-        else cout << tu << "/" << mau;
+struct PhanSo {
+    int tu;
+    int mau;
+    void print() const {
+        if (mau == 0) {
+            cout << "Error: Denominator cannot be zero" << endl;
+        } else if (mau == 1) {
+            cout << tu << endl;
+        } else if (tu == 0) {
+            cout << 0 << endl;
+        } else {
+            cout << tu << "/" << mau << endl;
+        }
     }
 
+    void rutGon() {
+        if (mau == 0) return;
+        int ucln = __gcd(tu, mau);
+        tu /= ucln;
+        mau /= ucln;
+    }
+
+    bool operator>(const PhanSo& ps) const {
+        return tu * ps.mau > ps.tu * mau;
+    }
 };
 
-int UCLN(int a, int b)
-{
-    return __gcd(a, b);
+PhanSo nhapPhanSo() {
+    PhanSo ps;
+    cout << "Enter numerator and denominator: ";
+    cin >> ps.tu >> ps.mau;
+
+    while (ps.mau == 0) {
+        cout << "Error: Denominator cannot be zero. Please enter again: ";
+        cin >> ps.tu >> ps.mau;
+    }
+
+    ps.rutGon();
+    return ps;
 }
 
-phanso rutgon(phanso ps)
-{
-    int ucln = UCLN(ps.tu, ps.mau);
-    return {ps.tu/ucln, ps.mau/ucln};
-}
+int main() {
+    cout << "Enter the first fraction:\n";
+    PhanSo phanSo1 = nhapPhanSo();
 
-phanso timMax(phanso ps1, phanso ps2)
-{
-    float phanso1 = (float)ps1.tu / (float)ps1.mau;
-    float phanso2 = (float)ps2.tu / (float)ps2.mau;
-    if(phanso1 > phanso2) return ps1;
-    else return ps2;
-}
+    cout << "Enter the second fraction:\n";
+    PhanSo phanSo2 = nhapPhanSo();
 
-int main()
-{
-    int tu, mau;
-    cin >> tu >> mau;
-    phanso phanso1 = {tu, mau};
+    if (phanSo1 > phanSo2) {
+        cout << "The largest fraction is: ";
+        phanSo1.print();
+    } else {
+        cout << "The largest fraction is: ";
+        phanSo2.print();
+    }
 
-    cin >> tu >> mau;
-    phanso phanso2 = {tu, mau};
-    phanso result = timMax(phanso1, phanso2);
-    result.print();
     return 0;
 }
