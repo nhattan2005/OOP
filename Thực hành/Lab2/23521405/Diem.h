@@ -23,6 +23,15 @@ public:
     void SetHoanhDo(int Hoanh);
 
     void TinhTien(int dx, int dy);
+
+    // Phương thức nhân đôi hoành độ và tung độ
+    void NhanDoi();
+
+    // Phương thức gán điểm về gốc tọa độ
+    void GanVeGoc();
+
+    // Phương thức tịnh tiến điểm theo trục x hoặc trục y
+    void TinhTien2(int k, float d);
 };
 
 #endif

@@ -2,6 +2,10 @@
 #include "diem.h"
 #include "tamgiac.h"
 #include "dagiac.h"
+#include "thisinh.h"
+#include "tamgiac2.h"
+#include "polygon.h"
+#include "list.h"
 using namespace std;
 
 void testBai1()
@@ -62,8 +66,8 @@ void testBai3()
     cin >> soDinh;
 
     DaGiac daGiac(soDinh);
-    daGiac.Nhap();  // Nhập tọa độ các đỉnh
-    daGiac.Xuat();  // Xuất tọa độ các đỉnh
+    daGiac.Nhap();
+    daGiac.Xuat();
 
     daGiac.TinhTien(2, 3);  // Tịnh tiến đa giác theo vector (2, 3)
     cout << "Sau khi tinh tien:" << endl;
@@ -82,7 +86,122 @@ void testBai3()
     daGiac.Xuat();
 }
 
+void testBai4()
+{
+    ThiSinh ts;
+
+    cout << "Nhap thong tin thi sinh:" << endl;
+    ts.Nhap();
+
+    cout << "\nThong tin thi sinh vua nhap:" << endl;
+    ts.Xuat();
+}
+
+void testBai5(){
+    float hoanh, tung;
+    cout << "Nhap hoanh do va tung do cua diem: ";
+    cin >> hoanh >> tung;
+
+    // Khởi tạo đối tượng điểm
+    Diem d(hoanh, tung);
+
+    // Nhập số lượng chỉ thị
+    int n;
+    cout << "Nhap so luong chi thi: ";
+    cin >> n;
+
+    // Xử lý các chỉ thị
+    for (int i = 0; i < n; i++) {
+        int x;
+        cout << "Nhap chi thi x: ";
+        cin >> x;
+
+        if (x == 1) {
+            d.NhanDoi();  // Nhân đôi hoành độ và tung độ
+        } else if (x == 2) {
+            d.GanVeGoc();  // Gán điểm về gốc tọa độ
+        } else if (x == 3) {
+            int k;
+            float dTinhTien;
+            cout << "Nhap huong tinh tien k (0 la x, khac 0 la y): ";
+            cin >> k;
+            cout << "Nhap do tinh tien d: ";
+            cin >> dTinhTien;
+            d.TinhTien2(k, dTinhTien);  // Tịnh tiến điểm
+        }
+    }
+
+    // Xuất kết quả cuối cùng
+    cout << "Toa do diem cuoi cung la: ";
+    d.Xuat();
+}
+
+void testBai6(){
+    TamGiac2 tg;
+
+    // Nhập tọa độ tam giác
+    tg.Nhap();
+
+    // Nhập góc tịnh tiến và độ dài tịnh tiến
+    float goc, doDai;
+    cout << "Nhap huong tinh tien (goc) va do dai tinh tien: ";
+    cin >> goc >> doDai;
+
+    // Thực hiện tịnh tiến
+    tg.TinhTien(goc, doDai);
+
+    // Xuất tọa độ tam giác sau khi tịnh tiến
+    tg.Xuat();
+}
+
+void testBai7(){
+    // Khởi tạo đối tượng Polygon
+    Polygon polygon;
+
+    // Nhập tọa độ của các đỉnh đa giác
+    polygon.Nhap();
+
+    // Xuất diện tích của đa giác
+    polygon.XuatDienTich();
+}
+
+void testBai8()
+{
+    List myList;
+    int n;
+
+    while (true) {
+        cin >> n;
+        if (n == -1) {
+            break;
+        }
+        else if (n == 0) {
+            double x;
+            cin >> x;
+            myList.Add(x);  // Thêm phần tử vào list
+        }
+        else if (n == 1) {
+            double x;
+            cin >> x;
+            myList.RemoveFirst(x);  // Xóa phần tử đầu tiên có giá trị x
+        }
+        else if (n == 2) {
+            double x;
+            cin >> x;
+            myList.RemoveAll(x);  // Xóa tất cả các phần tử có giá trị x
+        }
+        else if (n == 3) {
+            unsigned int x;
+            double y;
+            cin >> x >> y;
+            myList.Replace(x, y);  // Thay đổi phần tử thứ x bằng y
+        }
+    }
+
+    myList.Print();  // In ra list hiện tại
+}
+
 int main() {
-    testBai3();
+    testBai8();
     return 0;
 }

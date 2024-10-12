@@ -41,3 +41,24 @@ void Diem::TinhTien(int dx, int dy) {
     iHoanh += dx;
     iTung += dy;
 }
+
+// Phương thức nhân đôi hoành độ và tung độ
+void Diem::NhanDoi() {
+    iHoanh *= 2;
+    iTung *= 2;
+}
+
+// Phương thức gán điểm về gốc tọa độ
+void Diem::GanVeGoc() {
+    iHoanh = 0;
+    iTung = 0;
+}
+
+// Phương thức tịnh tiến điểm theo trục x hoặc trục y
+void Diem::TinhTien2(int k, float d) {
+    if (k == 0) {  // Tịnh tiến theo trục x
+        iHoanh += d;
+    } else {       // Tịnh tiến theo trục y
+        iTung += d;
+    }
+}
