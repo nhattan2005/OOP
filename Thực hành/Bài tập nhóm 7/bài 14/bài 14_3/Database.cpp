@@ -1,4 +1,6 @@
 #include "Database.h"
+#include <algorithm>
+#include <iostream>
 
 Database::~Database() {
     for (Sach* s : data)
@@ -17,21 +19,34 @@ void Database::Nhap() {
 
         if (t == 0) {
             SachThamKhao* stk = new SachThamKhao();
+            std::cout << "Nhap thong tin Sach Tham Khao thu " << i + 1 << ":\n";
             stk->Nhap();
             stk->loai = 0;
             data.push_back(stk);
-        } else {
+        } else if (t == 1) {
             SachGiaoKhoa* sgk = new SachGiaoKhoa();
+            std::cout << "Nhap thong tin Sach Giao Khoa thu " << i + 1 << ":\n";
             sgk->Nhap();
             sgk->loai = 1;
             data.push_back(sgk);
+        } else {
+            std::cout << "Loai sach khong hop le. Vui long nhap lai.\n";
+            --i; // Lùi lại một bước để nhập lại
         }
     }
 }
 
 void Database::Xuat() const {
-    for (const Sach* s : data)
+    if (data.empty()) {
+        std::cout << "Danh sach sach rong.\n";
+        return;
+    }
+
+    std::cout << "Danh sach cac sach trong thu vien:\n";
+    for (const Sach* s : data) {
         s->Xuat();
+        std::cout << "-----------------------------------\n";
+    }
 }
 
 void Database::TinhTong() const {
@@ -53,13 +68,13 @@ void Database::TinhTong() const {
 
 void Database::TienItNhat() const {
     if (data.empty()) {
-        std::cout << "Database trong" << std::endl;
+        std::cout << "Danh sach sach rong.\n";
         return;
     }
 
-    const Sach* minSach = *std::min_element(data.begin(), data.end(), 
+    const Sach* minSach = *std::min_element(data.begin(), data.end(),
                                             [](const Sach* a, const Sach* b) { return *a < *b; });
-    std::cout << "Sach co thanh tien thap nhat: " << std::endl;
+    std::cout << "Sach co thanh tien thap nhat:\n";
     minSach->Xuat();
 }
 
@@ -69,8 +84,14 @@ void Database::TimThongTin() const {
     std::cin.ignore();
     std::getline(std::cin, tenNXB);
 
+    bool found = false;
     for (const Sach* s : data) {
-        if (s->NhaXuatBan == tenNXB and s->loai == 1)
+        if (s->NhaXuatBan == tenNXB && s->loai == 1) {
             s->Xuat();
+            found = true;
+        }
     }
+
+    if (!found)
+        std::cout << "Khong tim thay Sach Giao Khoa cua nha xuat ban " << tenNXB << ".\n";
 }
