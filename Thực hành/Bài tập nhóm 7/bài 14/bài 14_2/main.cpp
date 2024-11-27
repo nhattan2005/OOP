@@ -9,9 +9,9 @@ int main() {
     sum.Xuat();
 
     // Try adding monomials with different exponents
-    DonThuc invalidSum = d1 + d2;
+    DonThuc invalidSum = d1 + d3;
     invalidSum.Xuat();
-    cout << invalidSum.Tinh(10) << endl; 
+    cout << invalidSum.Tinh(10) << endl;
 
     return 0;
 }

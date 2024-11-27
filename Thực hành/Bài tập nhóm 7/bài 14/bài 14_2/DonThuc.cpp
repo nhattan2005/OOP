@@ -28,11 +28,11 @@ DonThuc DonThuc::operator+(const DonThuc b) {
 }
 
 void DonThuc::Xuat() {
-    cout << "He so | So Mu" << endl;
-    cout << HeSo << endl;
-    cout << SoMu << endl;
+    cout << "He so: " << HeSo << endl;
+    cout << "So Mu: " << SoMu << endl;
 }
 
 double DonThuc::Tinh(double x) {
     return HeSo*pow(x,SoMu);
 }
+
