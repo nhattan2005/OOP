@@ -10,7 +10,7 @@ protected:
     Color textColor, backgroundColor;
 public:
     Component(const std::string& name, const Color& textColor, const Color& bgColor);
-    virtual void display() const = 0; // Lớp trừu tượng
+    virtual void display() const = 0; // Pure virtual function
     Color getTextColor() const;
     Color getBackgroundColor() const;
 };

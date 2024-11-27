@@ -3,7 +3,7 @@
 
 class Color {
 private:
-    int red, green, blue; // Giá trị RGB
+    int red, green, blue; // RGB values
 public:
     Color(int r = 0, int g = 0, int b = 0);
     int getRed() const;

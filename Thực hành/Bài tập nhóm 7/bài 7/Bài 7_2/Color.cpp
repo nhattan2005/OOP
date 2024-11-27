@@ -12,6 +12,7 @@ void Color::setColor(int r, int g, int b) {
     blue = b;
 }
 
+// Check if two colors are complementary
 bool Color::isComplementary(const Color& other) const {
     return (red + other.getRed() == 255) &&
            (green + other.getGreen() == 255) &&
