@@ -152,6 +152,7 @@ void XuLy()
             }
 
         /// Cout test
+        /*
         for (const auto& participant : danhsachNguoiChoi)
         {
             cout << participant->getID() << " ";
@@ -161,6 +162,7 @@ void XuLy()
         }
         cout << TongTienDatCuoc << endl;
         cout << "------------------" << endl;
+        */
 
         if (checkTienNhaCaiValid != 1)
             break;
@@ -170,8 +172,9 @@ void XuLy()
     {
         cout << participant->getID() << " ";
         if (participant->getType() == 2)
-            cout << participant->getHoaHong() << " ";
-        cout << participant->getSoDu() << endl;
+            cout << participant->getHoaHong() << endl;
+        else
+            cout << participant->getSoDu() << endl;
     }
 }
 
